@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quant Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+    <style>
+        body {
+            font-family: 'Fira Code', monospace;;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            position: relative;
+            padding-top: 20px;
+            text-align: center; /* Center the contents horizontally */
+        }
+        .community-icon {
+            display: inline-block; /* Make it inline-block to center with text-align */
+            margin-bottom: 20px; /* Add some space between icon and navbar */
+        }
+        .community-icon img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover; /* or use 'contain' depending on the aspect ratio you prefer */
+            border-radius: 50%; /* Optional: If you want to make it circular */
+        }
+        .navbar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .navbar .menu-icon {
+            display: block;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            position: relative;
+            padding: 10px;
+        }
+        .navbar .menu-icon div {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        .nav-links {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background: #24292e; /* GitHub's background color */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+            font-family: 'Fira Code', monospace; /* Use a common sans-serif font */
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 20px;
+            color: #fff; /* White text color */
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #0366d6; /* GitHub link hover color */
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-icon div:hover {
+            background-color: #555;
+        }
+
+        .typing-text {
+            font-family: 'Fira Code', monospace;; /* Use a common sans-serif font */
+            font-size: 60px; /* Increase the font size */
+            color: #000000; /* Google Meet blue color */
+            margin-bottom: 20px; /* Add some margin for spacing */
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflow */
+            border-right: 3px solid transparent; /* Add cursor effect */
+            animation: 3px solid transparent;
+            /* Animation for typing effect */
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from,
+            to {
+                border-right-color: #333;
+            }
+            50% {
+                border-right-color: transparent;
+            }
+        }
+
+        .content {
+            padding: 20px;
+            opacity: 0; /* Initially hide the content */
+            animation: fadeIn 1s ease forwards; /* Apply fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section .section-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .section .section-image {
+            flex: 0 0 30%; /* Adjust the width of the image column */
+            margin-right: 20px; /* Add some spacing between image and text */
+            width: 100%; /* Make the image responsive */
+            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
+        }
+
+        .section .section-image img {
+            width: 100%; /* Make the image responsive */
+            border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+        }
+
+        .section .section-text {
+    flex: 1; /* Take remaining space */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    padding: 10px; /* Add padding for better readability */
+}
+
+.section .section-text:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+        .section p {
+    font-family: 'Fira Code', monospace; /* Fallback to monospace if 'Fira Code' is not available */
+    font-size: 16px; /* Adjust the font size as needed */
+    line-height: 1.5; /* Adjust the line height for better readability */
+    color: #333; /* Default text color */
+}
+
+        .section h2 {
+            margin-top: 0;
+            color: #000000; /* Heading color */
+            margin-bottom: 10px;
+            font-size: 40px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 350;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0,255,0, 0); /* Add shadow */
+        }
+        
+        footer {
+            background-color: #24292e;
+            color: #fff;
+            padding: 20px 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #0366d6;
+        }
+
+        .club-info p {
+            margin: 5px 0;
+            color: #8b949e;
+        }
+
+    </style>
+
+    <script>
+        // Define a function to run after the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            // JavaScript code to be executed after the DOM is loaded
+            const text = "IIT Bombay Quant Community";
+            const typingText = document.getElementById("typingText");
+
+            function typeWriter(text, i) {
+                if (i < text.length) {
+                    typingText.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(function() {
+                        typeWriter(text, i);
+                    }, 150); // Adjust the typing speed
+                }else {
+                    setTimeout(function() {
+                        typingText.innerHTML = '';
+                        // Restart the animation
+                        typeWriter(text, 0);
+                    }, 2000); // Wait for 2 seconds before clearing the text
+        }
+            }
+
+            typeWriter(text, 0);
+
+            // Get the menu icon and nav links elements
+            var menuIcon = document.querySelector(".menu-icon");
+            var navLinks = document.querySelector(".nav-links");
+
+            // Add click event listener to the menu icon
+            menuIcon.addEventListener("click", function() {
+                // Toggle the display property of nav links
+                if (navLinks.style.display === "flex") {
+                    navLinks.style.display = "none"; // Hide nav links if currently visible
+                } else {
+                    navLinks.style.display = "flex"; 
+                    navLinks.style.flexDirection = "row";
+                    // Show nav links if currently hidden
+                }
+            });
+            var navLinks = document.querySelector(".nav-links");
+            setTimeout(function() {
+    if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+    }
+}, 15000);
+
+        });
+    </script>
+</head>
+<body>
+
+<div class="header">
+    <div class="community-icon">
+        <img src="Cum_icon.ico" alt="Community Icon">
+    </div>
+    <div class="typing-text" id="typingText"></div>
+    <div class="navbar">
+        <div class="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
+            <a href="/home.html">Home</a>
+            <a href="/home.html">Events Calendar</a>
+            <a href="/home.html">Articles</a>
+            <a href="/home.html">Teams</a>
+            <a href="/home.html">Forums</a>
+            <a href="/home.html">Resource Library</a>
+            <a href="/home.html">Notifications</a>
+            <a href="/home.html">Messaging</a>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="section" id="about-us">
+        <div class="section-content">
+            <div class="section-image">
+                <img src="https://static.wixstatic.com/media/c23985_bfdd0b4c69e545c0ad3c7ceadcfab44a~mv2.jpeg/v1/fill/w_838,h_619,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c23985_bfdd0b4c69e545c0ad3c7ceadcfab44a~mv2.jpeg" alt="About Us Image">
+            </div>
+            <div class="section-text">
+                <h2>About Us</h2>
+                <p>Welcome to Finance Club, IIT Bombay! We're a vibrant community of finance enthusiasts dedicated to fostering financial literacy and innovation on campus. Since our inception, we've been empowering students to explore the world of finance through workshops, competitions, and guest lectures. Join us as we shape the future of finance at IIT Bombay and beyond.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section" id="who-we-are">
+        <div class="section-content">
+            <div class="section-text">
+                <h2>Who We Are</h2>
+                <p>We are Finance Club, IIT Bombay—a vibrant community of finance enthusiasts passionate about promoting financial literacy and innovation on campus. Since our inception, we've been fostering a culture of excellence through workshops, competitions, and guest lectures. Our members collaborate on projects, engage in discussions, and share insights through our blogs. With the support of alumni, we're venturing into the Indian equity markets. Join us as we shape the future of finance at IIT Bombay and beyond.</p>
+            </div>
+            <div class="section-image">
+                <img src="https://static.wixstatic.com/media/c23985_8701ad4e0340498cbc0f1cd7de02a51a~mv2.jpeg/v1/fill/w_838,h_619,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c23985_8701ad4e0340498cbc0f1cd7de02a51a~mv2.jpeg" alt="Who We Are Image">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section" id="what-we-do">
+        <div class="section-content">
+            <div class="section-image">
+                <img src="https://static.wixstatic.com/media/c23985_482125eef1ff4737b0d3bf41606e86bf~mv2.jpeg/v1/fill/w_838,h_619,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/c23985_482125eef1ff4737b0d3bf41606e86bf~mv2.jpeg" alt="What We Do Image">
+            </div>
+            <div class="section-text">
+                <h2>What We Do</h2>
+                <p>At Finance Club, IIT Bombay, we host workshops, competitions, and guest lectures to promote financial literacy and innovation. Our members collaborate on projects, participate in discussions, and publish insightful blogs on finance-related topics. We're also venturing into the Indian equity markets with investments guided by alumni support. Join us to explore, learn, and grow in the world of finance!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="social-links">
+            <a href="https://www.instagram.com/your_instagram_username" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://www.facebook.com/your_facebook_page" target="_blank"><i class="fab fa-facebook-f"></i></a>
+<a href="https://www.linkedin.com/in/your_linkedin_profile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+            <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="club-info">
+            <p>&copy; IITB Quant Club</p>
+            <p>Address: Your Address, City, Country</p>
+            <p>Phone: +1234567890</p>
+        </div>
+    </div>
+</footer>
+
+</html>
